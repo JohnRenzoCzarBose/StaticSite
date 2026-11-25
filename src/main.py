@@ -1,8 +1,7 @@
 import os
-from selectors import EpollSelector
 import shutil
 from textnode import TextNode, TextType
-
+from gencontent import generate_page
 
 def copy_static(source, destination):
     for pr in os.listdir(source):
@@ -18,6 +17,10 @@ def main():
         shutil.rmtree("public")
     os.mkdir("public")
     copy_static("static","public")
-
+    generate_page(
+            "content/index.md",
+            "template.html",
+            "public/index.html"
+        )
 
 main()
