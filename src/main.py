@@ -1,7 +1,7 @@
 import os
 import shutil
 from textnode import TextNode, TextType
-from gencontent import generate_page
+from gencontent import generate_pages_recursive
 
 def copy_static(source, destination):
     for pr in os.listdir(source):
@@ -17,10 +17,10 @@ def main():
         shutil.rmtree("public")
     os.mkdir("public")
     copy_static("static","public")
-    generate_page(
-            "content/index.md",
+    generate_pages_recursive(
+            "content",
             "template.html",
-            "public/index.html"
+            "public"
         )
 
 main()
